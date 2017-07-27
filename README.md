@@ -29,9 +29,9 @@
 3.1、在AndroidManifest.xml文件中静态注册Service，详细注册代码如下：
 
 ```xml
-<!-- exported为true表示 -->
-<!-- process表示 -->
-<!-- action用于 -->
+<!-- exported表示是否支持其它应用调用当前组件 -->
+<!-- process表示将组建运行到单独的进程中 -->
+<!-- action用于用于过滤识别其他的Intent -->
 <service android:name=".AidlService"
   android:exported="true"
   android:process=":Remote">
