@@ -77,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        // get student info
+        findViewById(R.id.get_student_info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    toast(binder.getStudentInfo().toString());
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void toast(String msg) {

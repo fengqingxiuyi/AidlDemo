@@ -32,6 +32,13 @@
             android:layout_marginTop="10dp"
             android:text="调用AidlService的getInfo()方法"/>
 
+        <Button
+            android:id="@+id/get_student_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="调用AidlService的getStudentInfo()方法"/>
+
     </LinearLayout>
 
 </RelativeLayout>
