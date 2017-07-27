@@ -16,8 +16,6 @@
 
 ***分支：feature/aidl_advanced***
 
-此处文档说明基于[#最基础使用](#最基础使用)章节，通过列出不同点进行说明。
-
 ## Service端
 
 ***包名：com.fqxyi.aidlservice***
