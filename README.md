@@ -4,7 +4,7 @@
 
 # Gif
 
-![gif_aidl_base](./gif/aidl_base.gif)
+![gif_aidl_advanced](./gif/aidl_advanced.gif)
 
 # 注意
 
