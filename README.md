@@ -4,6 +4,8 @@
 
 # 分支
 
+master分支包含最新代码，其他分支的代码最终都将合并到master分支上
+
 最基础使用分支：feature/aidl_base，[传送门](https://github.com/fengqingxiuyi/AidlDemo/tree/feature/aidl_base)
 
 稍高级使用分支：feature/aidl_advanced，[传送门](https://github.com/fengqingxiuyi/AidlDemo/tree/feature/aidl_advanced)
