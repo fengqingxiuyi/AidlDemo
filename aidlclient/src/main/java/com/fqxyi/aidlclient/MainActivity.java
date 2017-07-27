@@ -121,9 +121,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (conn != null) {
-            isBind = false;
-            unbindService(conn);
+        if (isBind) {
+            if (conn != null) {
+                isBind = false;
+                unbindService(conn);
+            }
         }
     }
 }
