@@ -2,6 +2,8 @@
 
 对于AIDL【Android Interface Definition Language(android接口定义语言)】的一些使用：最基础使用、稍高级使用、......
 
+详细开发文档见各分支的README.md文件
+
 # 分支
 
 master分支包含最新代码，其他分支的代码最终都将合并到master分支上
