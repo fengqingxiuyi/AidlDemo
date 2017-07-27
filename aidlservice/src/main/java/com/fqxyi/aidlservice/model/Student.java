@@ -59,4 +59,12 @@ public class Student implements Parcelable {
         dest.writeString(name);
         dest.writeInt(age);
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name=" + name +
+                ", age=" + age +
+                "}";
+    }
 }
