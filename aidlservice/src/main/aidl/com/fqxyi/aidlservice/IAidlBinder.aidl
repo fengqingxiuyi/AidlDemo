@@ -3,6 +3,8 @@ package com.fqxyi.aidlservice;
 
 // Declare any non-default types here with import statements
 
+import com.fqxyi.aidlservice.model.Student;
+
 interface IAidlBinder {
     /**
      * Demonstrates some basic types that you can use as parameters

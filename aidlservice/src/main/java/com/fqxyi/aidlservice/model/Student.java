@@ -1,4 +1,4 @@
-package com.fqxyi.aidlservice;
+package com.fqxyi.aidlservice.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -28,13 +28,19 @@ public class Student implements Parcelable {
         this.age = age;
     }
 
+    public Student() {
+
+    }
+
+    protected Student(Parcel in) {
+        this.name = in.readString();
+        this.age = in.readInt();
+    }
+
     public static final Creator<Student> CREATOR = new Creator<Student>() {
         @Override
         public Student createFromParcel(Parcel in) {
-            Student student = new Student();
-            student.name = in.readString();
-            student.age = in.readInt();
-            return student;
+            return new Student(in);
         }
 
         @Override
