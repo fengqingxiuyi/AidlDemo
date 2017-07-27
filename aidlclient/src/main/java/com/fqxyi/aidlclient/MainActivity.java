@@ -16,6 +16,8 @@ import com.fqxyi.aidlservice.IAidlBinder;
 public class MainActivity extends AppCompatActivity {
 
     private IAidlBinder binder;
+    // 默认未绑定service
+    private boolean isBind = false;
 
     private ServiceConnection conn = new ServiceConnection(){
 
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (conn != null) {
+                    isBind = true;
+                    toast("Bind Service is Success");
                     /**
                      * Android 5.0 以上会报错：IllegalArgumentException:
                      * Service Intent must be explicit，可通过下面代码实现
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setPackage("com.fqxyi.aidlservice");
                     bindService(intent, conn, Context.BIND_AUTO_CREATE);
                 } else {
-                    toast("ServiceConnection is NULL");
+                    toast("ServiceConnection is null");
                 }
             }
         });
@@ -60,9 +64,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.un_bind_service).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (conn != null) {
-                    unbindService(conn);
-                    conn = null;
+                if (isBind) {
+                    if (conn != null) {
+                        isBind = false;
+                        toast("UnBind Service is Success");
+
+                        unbindService(conn);
+                    } else {
+                        toast("ServiceConnection is null");
+                    }
+                } else {
+                    toast("binder is null, please bind service at first!");
                 }
             }
         });
@@ -71,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    if (binder == null) {
+                        toast("binder is null, please bind service at first!");
+                        return;
+                    }
                     toast(binder.getInfo());
                 } catch (RemoteException e) {
                     e.printStackTrace();
@@ -83,4 +99,12 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (conn != null) {
+            isBind = false;
+            unbindService(conn);
+        }
+    }
 }
