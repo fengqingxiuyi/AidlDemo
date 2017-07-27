@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 
 public class AidlService extends Service {
 
+    private Student student;
+
     private IAidlBinder.Stub serviceBinder = new IAidlBinder.Stub(){
         @Override
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
@@ -22,7 +24,20 @@ public class AidlService extends Service {
         public String getInfo() throws RemoteException {
             return "I'm a Service";
         }
+
+        @Override
+        public Student getStudentInfo() throws RemoteException {
+            return student;
+        }
     };
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        student = new Student();
+        student.setName("风清袖一");
+        student.setAge(18);
+    }
 
     @Nullable
     @Override

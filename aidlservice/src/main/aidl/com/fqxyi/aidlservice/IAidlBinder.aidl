@@ -12,4 +12,6 @@ interface IAidlBinder {
             double aDouble, String aString);
 
     String getInfo();
+
+    Student getStudentInfo();
 }
