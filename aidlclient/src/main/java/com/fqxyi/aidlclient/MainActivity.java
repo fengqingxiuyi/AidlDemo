@@ -1,0 +1,86 @@
+package com.fqxyi.aidlclient;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
+
+import com.fqxyi.aidlservice.IAidlBinder;
+
+public class MainActivity extends AppCompatActivity {
+
+    private IAidlBinder binder;
+
+    private ServiceConnection conn = new ServiceConnection(){
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            binder = IAidlBinder.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            binder = null;
+        }
+
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        // bind Service
+        findViewById(R.id.bind_service).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (conn != null) {
+                    /**
+                     * Android 5.0 以上会报错：IllegalArgumentException:
+                     * Service Intent must be explicit，可通过下面代码实现
+                     *
+                     * Intent intent = new Intent("com.fqxyi.aidlservice.remote");
+                     * bindService(intent, conn, Context.BIND_AUTO_CREATE);
+                     */
+                    Intent intent = new Intent();
+                    intent.setAction("com.fqxyi.aidlservice.remote");
+                    intent.setPackage("com.fqxyi.aidlservice");
+                    bindService(intent, conn, Context.BIND_AUTO_CREATE);
+                } else {
+                    toast("ServiceConnection is NULL");
+                }
+            }
+        });
+        // unBind Service
+        findViewById(R.id.un_bind_service).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (conn != null) {
+                    unbindService(conn);
+                    conn = null;
+                }
+            }
+        });
+        // get info
+        findViewById(R.id.get_info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    toast(binder.getInfo());
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void toast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+}
