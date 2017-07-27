@@ -2,13 +2,17 @@
 
 对于AIDL【Android Interface Definition Language(android接口定义语言)】的一些使用：最基础使用、稍高级使用、......
 
+# Gif
+
+![gif_aidl_base](./gif/aidl_base.gif)
+
 # 注意
 
 ***基本开发流程：先开发Service端，后开发Client端***
 
 ***使用AndroidStudio创建AidlDemo工程后，再在里面创建Service Module和Client Module，不用管默认的app Module***
 
-# 稍高级使用
+# 开发流程-稍高级使用
 
 ***分支：feature/aidl_advanced***
 
