@@ -1,5 +1,6 @@
 package com.fqxyi.aidlclient;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -7,19 +8,18 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.fqxyi.aidlservice.IAidlBinder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private IAidlBinder binder;
     // 默认未绑定service
     private boolean isBind = false;
 
-    private ServiceConnection conn = new ServiceConnection(){
+    private ServiceConnection conn = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
